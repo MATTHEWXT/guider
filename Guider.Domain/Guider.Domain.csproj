@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Core\Specifications\" />
-    <Folder Include="Core\Repositories\" />
   </ItemGroup>
 
 </Project>
