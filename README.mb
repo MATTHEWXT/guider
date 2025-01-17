@@ -31,4 +31,4 @@ Application:
 Также в этом слое используется AutoMapper для маппинга данных между сущностями и DTO (Data Transfer Objects).
 Это позволяет удобно преобразовывать данные при передаче между слоями приложения и API.
 
-Ссылка на проект: https://github.com/MATTHEWXT/MyContacts.git
+Ссылка на проект: https://github.com/MATTHEWXT/guider.git
