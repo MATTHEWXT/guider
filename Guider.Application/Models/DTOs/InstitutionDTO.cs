@@ -1,15 +1,15 @@
-﻿using Guider.Application.Models.DTOs;
-using Guider.Domain.Entities;
+﻿using Guider.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Guider.Application.Models.Requests
+namespace Guider.Application.Models.DTOs
 {
-    public class CreateInstitutionReq
+    public class InstitutionDTO
     {
+        public Guid Id { get; set; }
         public Guid CategoryId { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;

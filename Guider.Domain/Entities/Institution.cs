@@ -12,12 +12,13 @@ namespace Guider.Domain.Entities
         public string Address {  get; set; } = string.Empty;
         public string? Description { get; set; }
         public Category Category { get; set; } = null!;
-        public ICollection<Teg> Tegs { get; set; } = new List<Teg>();
+        public List<Tag> Tags { get; set; } = new List<Tag>();
 
         public Institution() { }
 
-        public Institution(string name, string address, string? desc)
+        public Institution(Guid categoryId, string name, string address, string? desc)
         {
+            CategoryId = categoryId;
             Name = name;
             Address = address;
             Description = desc;

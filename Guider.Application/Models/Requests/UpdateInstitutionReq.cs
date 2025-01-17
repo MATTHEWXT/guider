@@ -1,5 +1,4 @@
 ﻿using Guider.Application.Models.DTOs;
-using Guider.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Guider.Application.Models.Requests
 {
-    public class CreateInstitutionReq
+    public class UpdateInstitutionReq
     {
         public Guid CategoryId { get; set; }
         public string Name { get; set; } = string.Empty;

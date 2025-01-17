@@ -2,16 +2,16 @@
 
 namespace Guider.Domain.Entities
 {
-    public class Teg : BaseEntity
+    public class Tag : BaseEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
         public ICollection<Institution> Institutions { get; set; } = new List<Institution>();
 
-        public Teg() { }
+        public Tag() { }
 
-        public Teg(string name, string desc) {
+        public Tag(string name, string? desc) {
             Name = name;
             Description = desc;
         }

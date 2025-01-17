@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Guider.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250116125040_InitialCreate")]
+    [Migration("20250117180228_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -70,7 +70,7 @@ namespace Guider.Infrastructure.Data.Migrations
                     b.ToTable("Institutions");
                 });
 
-            modelBuilder.Entity("Guider.Domain.Entities.Teg", b =>
+            modelBuilder.Entity("Guider.Domain.Entities.Tag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,22 +85,22 @@ namespace Guider.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tegs");
+                    b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("InstitutionTeg", b =>
+            modelBuilder.Entity("InstitutionTag", b =>
                 {
                     b.Property<Guid>("InstitutionsId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("TegsId")
+                    b.Property<Guid>("TagsId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("InstitutionsId", "TegsId");
+                    b.HasKey("InstitutionsId", "TagsId");
 
-                    b.HasIndex("TegsId");
+                    b.HasIndex("TagsId");
 
-                    b.ToTable("InstitutionTeg");
+                    b.ToTable("InstitutionTag");
                 });
 
             modelBuilder.Entity("Guider.Domain.Entities.Institution", b =>
@@ -114,7 +114,7 @@ namespace Guider.Infrastructure.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("InstitutionTeg", b =>
+            modelBuilder.Entity("InstitutionTag", b =>
                 {
                     b.HasOne("Guider.Domain.Entities.Institution", null)
                         .WithMany()
@@ -122,9 +122,9 @@ namespace Guider.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Guider.Domain.Entities.Teg", null)
+                    b.HasOne("Guider.Domain.Entities.Tag", null)
                         .WithMany()
-                        .HasForeignKey("TegsId")
+                        .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

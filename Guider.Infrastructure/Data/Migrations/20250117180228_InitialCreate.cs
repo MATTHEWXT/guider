@@ -25,7 +25,7 @@ namespace Guider.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tegs",
+                name: "Tags",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -34,7 +34,7 @@ namespace Guider.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tegs", x => x.Id);
+                    table.PrimaryKey("PK_Tags", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,25 +59,25 @@ namespace Guider.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InstitutionTeg",
+                name: "InstitutionTag",
                 columns: table => new
                 {
                     InstitutionsId = table.Column<Guid>(type: "uuid", nullable: false),
-                    TegsId = table.Column<Guid>(type: "uuid", nullable: false)
+                    TagsId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InstitutionTeg", x => new { x.InstitutionsId, x.TegsId });
+                    table.PrimaryKey("PK_InstitutionTag", x => new { x.InstitutionsId, x.TagsId });
                     table.ForeignKey(
-                        name: "FK_InstitutionTeg_Institutions_InstitutionsId",
+                        name: "FK_InstitutionTag_Institutions_InstitutionsId",
                         column: x => x.InstitutionsId,
                         principalTable: "Institutions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_InstitutionTeg_Tegs_TegsId",
-                        column: x => x.TegsId,
-                        principalTable: "Tegs",
+                        name: "FK_InstitutionTag_Tags_TagsId",
+                        column: x => x.TagsId,
+                        principalTable: "Tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -88,22 +88,22 @@ namespace Guider.Infrastructure.Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InstitutionTeg_TegsId",
-                table: "InstitutionTeg",
-                column: "TegsId");
+                name: "IX_InstitutionTag_TagsId",
+                table: "InstitutionTag",
+                column: "TagsId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "InstitutionTeg");
+                name: "InstitutionTag");
 
             migrationBuilder.DropTable(
                 name: "Institutions");
 
             migrationBuilder.DropTable(
-                name: "Tegs");
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "Categories");

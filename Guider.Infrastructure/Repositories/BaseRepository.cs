@@ -1,5 +1,6 @@
 ﻿using Guider.Domain.Core.Models;
 using Guider.Domain.Core.Repositories;
+using Guider.Domain.Core.Specifications;
 using Guider.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,16 @@ namespace Guider.Infrastructure.Repositories
         public BaseRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task<T> FirstOrDefaultAsync(IBaseSpecification<T> spec)
+        {
+            return await ApplySpecification(spec).FirstOrDefaultAsync() ?? throw new InvalidOperationException("Entity not found");
+        }
+
+        public async Task<bool> AnyAsync(IBaseSpecification<T> spec)
+        {
+            return await ApplySpecification(spec).AnyAsync();
         }
 
         public async Task<T> AddAsync(T entity)
@@ -44,6 +55,11 @@ namespace Guider.Infrastructure.Repositories
         {
             return await _dbContext.Set<T>().ToListAsync();
         }
+        public async Task<IList<T>> ListAsync(IBaseSpecification<T> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
+        }
+
 
         public async Task<T> GetByIdAsync(Guid id)
         {
@@ -54,6 +70,11 @@ namespace Guider.Infrastructure.Repositories
         {
            _dbContext.Set<T>().Update(entity);
             await _dbContext.SaveChangesAsync();
+        }
+
+        private IQueryable<T> ApplySpecification(IBaseSpecification<T> spec)
+        {
+            return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>(), spec);
         }
     }
 }
